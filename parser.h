@@ -54,7 +54,11 @@ class parser{
          * @return 
          */
         bool assign();
-        
+        /**
+         * checks it it the character has the correct operation
+         * @return 
+         */
+        bool op();
         
 };
 
