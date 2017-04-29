@@ -9,6 +9,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <exception>
+#include <valarray>
 using namespace std;
 
 
@@ -53,6 +54,15 @@ bool parser::assign(){
          */
     }
     return false;
+}
+
+bool parser::op(){
+    if(line[index] == '/'|line[index] == '*'|line[index] == '-'|
+            line[index] == '+'|line[index] == '%')
+        return true;
+    else return false;
+    /*TODO: error explain
+     */
 }
 
 bool parser::id(){
