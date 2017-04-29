@@ -21,6 +21,7 @@ using namespace std;
 class parser{
     std::string line;
     int index;
+    std::string explain;
     public:
         /**
          * inputs a string to sets it to the string line
@@ -48,6 +49,11 @@ class parser{
          * @return 
          */
         bool id2();
+        /**
+         * checks if assign is valid
+         * @return 
+         */
+        bool assign();
         
         
 };
