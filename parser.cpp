@@ -1,22 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/* Members: Alexander Giang, Shawn Chua
+ * Class Users: cssc0885, cssc0894
+ * REDID: 818285579, 817662151
+ * Class Information: CS530, Spring 2017
+ * Assignment #3, Assignment/Expression Parser
+ * Filename: parser.cpp
  */
 #include "parser.h"
+#include <string.h>
+#include <fstream>
+#include <iostream>
+#include <cstdlib>
+#include <exception>
+#include <valarray>
+using namespace std;
 
+/*Sets the line to the string*/
 parser::setLine(std::string temp){
     line.clear();
     line.append(temp);
 }
-
+/*Returns the string from the string variable line*/
 string parser::getLine(){
     return line;
 }
+/*Initialize the index variable to zero*/
 void parser::initIndex(){
     index = 0;
 }
-
+/*Indicates if the assign line is valid*/
 bool parser::assign(){
     bool isValid = false;
     isValid = id();
@@ -47,7 +58,7 @@ bool parser::assign(){
     }
     return false;
 }
-
+/*Checks if the given operation is valid*/
 bool parser::op(){
     if(line[index] == '/'|line[index] == '*'|line[index] == '-'|
             line[index] == '+'|line[index] == '%')
@@ -56,7 +67,7 @@ bool parser::op(){
     /*TODO: error explain
      */
 }
-
+/*checks if the given id is valid*/
 bool parser::id(){
     bool isValid = false;
     if(line[index] == 'a'|line[index] == 'b'|line[index] == 'c'|line[index] == 'd'|line[index] == 'e'|
@@ -85,6 +96,7 @@ bool parser::id(){
     }
     if(isValid) return true;
 }
+/*A continuation for checking id*/
 bool parser::id2(){
     bool isValid = false;
     if(line[index] == ' '|line[index] == '/'|line[index] == '*'|line[index] == '-'|
@@ -111,6 +123,7 @@ bool parser::id2(){
         isValid = true;     
     }
     else return false;
+    /**TODO: error explain*/
     if(isValid && index < line.size()-1){
             //id2();
             if(id2()) return true;
