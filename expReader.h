@@ -16,7 +16,11 @@ class expReader{
         /**
          * if it's an expression or not
          */
-        bool isExp(string);
+        bool isExp();
+        /**
+         * error checks
+         */
+        bool errorCheck(string);
 
         
 

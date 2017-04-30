@@ -6,6 +6,7 @@
  * Filename: expReader.cpp
  */
 #include "expReader.h"
+#include "parser.h"
 #include <string.h>
 #include <fstream>
 #include <iostream>
@@ -13,7 +14,11 @@
 #include <valarray>
 using namespace std;
 
-expReader::isExp(string input){
-
-    //TO DO
+expReader::isExp(){
+    string line = getLine();
+    
+    for(int i = 0; i < line.size(); i++) 
+        if(line[i] == '=') 
+            return true;
+    return false;
 }
