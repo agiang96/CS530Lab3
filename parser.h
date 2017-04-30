@@ -16,6 +16,11 @@
 #include <string>
 #include <string.h>
 #include <vector>
+#include <fstream>
+#include <iostream>
+#include <cstdlib>
+#include <exception>
+#include <valarray>
 using namespace std;
 
 class parser{

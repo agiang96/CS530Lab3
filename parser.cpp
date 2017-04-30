@@ -4,14 +4,6 @@
  * and open the template in the editor.
  */
 #include "parser.h"
-#include <string.h>
-#include <fstream>
-#include <iostream>
-#include <cstdlib>
-#include <exception>
-#include <valarray>
-using namespace std;
-
 
 parser::setLine(std::string temp){
     line.clear();
