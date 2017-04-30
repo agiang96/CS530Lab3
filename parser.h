@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
- * File:   parser.h
- * Author: nibic
- *
- * Created on April 28, 2017, 9:50 PM
+/* Members: Alexander Giang, Shawn Chua
+ * Class Users: cssc0885, cssc0894
+ * REDID: 818285579, 817662151
+ * Class Information: CS530, Spring 2017
+ * Assignment #3, Assignment/Expression Parser
+ * Filename: parser.h
  */
 
 #ifndef PARSER_H
@@ -16,11 +11,6 @@
 #include <string>
 #include <string.h>
 #include <vector>
-#include <fstream>
-#include <iostream>
-#include <cstdlib>
-#include <exception>
-#include <valarray>
 using namespace std;
 
 class parser{
