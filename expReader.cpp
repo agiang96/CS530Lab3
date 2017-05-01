@@ -7,11 +7,6 @@
  */
 #include "expReader.h"
 #include "parser.h"
-#include <string.h>
-#include <fstream>
-#include <iostream>
-#include <exception>
-#include <valarray>
 using namespace std;
 
 expReader::isExp(){
@@ -19,6 +14,26 @@ expReader::isExp(){
     
     for(int i = 0; i < line.size(); i++) 
         if(line[i] == '=') 
-            return true;
-    return false;
+            return false;
+    return true;
 }
+
+string expReader::errorCheck(string explain){
+/*
+    int equals, plus, minus, lpar, rpar;
+
+    getline(file, line);
+    while(!line.end()) { 
+       if (line[i] == "=,+,-,*,/,(,)") {
+          var++;
+       
+       if (var > 1)
+          return var.error();
+       if (lpar != rpar)
+          return par.error(); 
+
+*/
+
+    return explain;
+}
+
