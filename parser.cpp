@@ -29,10 +29,15 @@ void parser::initIndex(){
 }
 /*Indicates if the assign line is valid*/
 bool parser::assign(){
+    string explain;
     bool isValid = false;
+//    if(id()) return true;
+//    else return false;
+            
     isValid = id();
     if(line[index] == ' ') index++; //ignore the space
     if(isValid){
+        cout << index << endl;
         if(line[index++] == '=') {//checking if there is =
             isValid = true;
             if(line[index] == ' ') {
@@ -46,23 +51,132 @@ bool parser::assign(){
     else return false;
     /*TODO explain error
      */
+    cout << index << endl;
     if(isValid && index < line.size()-1){
-        cout << "call expr()" << endl;
+        exp();
     }
     if(isValid && index == line.size() - 1){        
-        if(line[index] == ';') //this should be the last index of that string
+        if(line[index] == ';') {//this should be the last index of that string
             return true;
-        else return false;
+        }
+        else {
+            return false;
+        }
         /*TODO: explain error
          */
     }
-    return false;
+//    return false;
 }
+/*checks if expression is valid*/
+bool parser::exp(){
+    bool isValid = false;
+    if(line[index] == '('){
+        index++;
+        if(line[index] == ' '){
+            index++;
+        }
+        isValid = exp();
+        if(isValid){
+            if(line[index] == ' '){
+                index++;
+            }
+            if(line[index] == ')'){
+                index++;
+                isValid = true;
+            }
+            else return false;
+            /*TODO error explain*/
+        }
+        else return false;
+        /*TODO error explain*/
+    }
+    else {
+        isValid = id();
+    }
+    if(line[index] == ' '){
+            index++;
+    }
+    isValid = op();
+    if(line[index] == ' '){
+            index++;
+    }
+    if(line[index] == '('){
+        index++;
+        if(line[index] == ' '){
+            index++;
+        }
+        isValid = exp();
+        if(isValid){
+            if(line[index] == ' '){
+                index++;
+            }
+            if(line[index] == ')'){
+                index++;                
+                isValid = true;
+            }
+            else return false;
+            /*TODO error explain*/
+        }
+        else return false;
+        /*TODO error explain*/
+    }
+    else {
+        isValid = id();
+    }
+    if(isValid && index <= line.size()-1){
+        exp2();
+    }
+    if(isValid) return true;
+    else return false;
+}
+
+bool parser::exp2(){
+    bool isValid = false;
+    if(line[index] == ' '){
+            index++;
+    }
+     isValid = op();
+    if(line[index] == ' '){
+            index++;
+    }
+    if(line[index] == '('){
+        index++;
+        if(line[index] == ' '){
+            index++;
+        }
+        isValid = exp();
+        if(isValid){
+            if(line[index] == ' '){
+                index++;
+            }
+            if(line[index] == ')'){
+                index++;                
+                isValid = true;
+            }
+            else return false;
+            /*TODO error explain*/
+        }
+        else return false;
+        /*TODO error explain*/
+    }
+    else {
+        isValid = id();
+    }
+    if(isValid && index <= line.size()-1){
+        exp2();
+    }
+    if(isValid) return true;
+    else return false;
+    
+}
+
 /*Checks if the given operation is valid*/
 bool parser::op(){
     if(line[index] == '/'|line[index] == '*'|line[index] == '-'|
-            line[index] == '+'|line[index] == '%')
+            line[index] == '+'|line[index] == '%'){
+        index++;
         return true;
+    }    
     else return false;
     /*TODO: error explain
      */
@@ -87,7 +201,8 @@ bool parser::id(){
         isValid = true;
     }
     else return false;
-    if(isValid && index < line.size()-1){//if it is an id and there is more to check go to id2()
+    /*TODO: explain error*/
+    if(isValid && index <= line.size()-1){//if it is an id and there is more to check go to id2()
             //id2();
             if(id2()) return true;
             else return false;
@@ -99,8 +214,8 @@ bool parser::id(){
 /*A continuation for checking id*/
 bool parser::id2(){
     bool isValid = false;
-    if(line[index] == ' '|line[index] == '/'|line[index] == '*'|line[index] == '-'|
-            line[index] == '+'|line[index] == '%'){
+    if(line[index] == ' '|line[index] == '='|line[index] == '/'|line[index] == '*'|line[index] == '-'|
+            line[index] == '+'|line[index] == '%'|line[index] == ')'|line[index] == '('){
         return true; //shows that this is not an id, done checking id, 
                      //and should go check for another function
     } 
@@ -124,7 +239,7 @@ bool parser::id2(){
     }
     else return false;
     /**TODO: error explain*/
-    if(isValid && index < line.size()-1){
+    if(isValid && index <= line.size()-1){
             //id2();
             if(id2()) return true;
             else return false;
@@ -132,6 +247,17 @@ bool parser::id2(){
              */
     } 
     if(isValid) return true;
+}
+
+string parser::remove_if(std::string line){
+    string temp = line;
+    string temp2;
+    for (int i = 0;i < temp.size(); i++)
+        if (temp[i] != ' '){
+            temp2[i] = temp[i];
+        }
+            
+    return temp2;
 }
 
 
