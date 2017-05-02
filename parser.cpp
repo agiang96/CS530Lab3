@@ -165,16 +165,8 @@ bool parser::exp2(){
 
 /*Checks if the given operation is valid*/
 bool parser::op(){
-    if(line[index] == '/')
-        divCount++; return true;
-    if(line[index] == '*')
-        mulCount++; return true;
-    if(line[index] == '-')
-        minCount++; return true;
-    if(line[index] == '+')
-        addCount++; return true;
-    if(line[index] == '%')
-        modCount++; return true;
+    if(line[index] == '/') | line[index] == '*') | line[index] == '-')
+         | line[index] == '+') | line[index] == '%')
     return false;
     /*TODO: error explain
      */
