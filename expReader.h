@@ -6,24 +6,20 @@
  * Filename: expReader.h
  */
 
+#ifndef EXPREADER_H
+#define EXPREADER_H
+
+#include "parser.h"
 #include <string>
 #include <string.h>
 using namespace std;
 
 class expReader{
-
     public:
         /**
          * if it's an expression or not
          */
-        bool isExp();
-        /**
-         * error checks
-         */
-        bool errorCheck(string);
-
-        
-
-        
+        bool isExp(string);
 };
 
+#endif

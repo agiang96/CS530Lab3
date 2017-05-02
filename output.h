@@ -8,6 +8,7 @@
 
 #ifndef OUTPUT_H
 #define OUTPUT_H
+#include "parser.h"
 #include <string.h>
 #include <fstream>
 #include <iostream>

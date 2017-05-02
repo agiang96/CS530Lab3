@@ -6,32 +6,19 @@
  * Filename: expReader.cpp
  */
 #include "expReader.h"
-#include "parser.h"
 using namespace std;
 
-expReader::isExp(){
-    string line = getLine();
-    
+bool expReader::isExp(string in){
+    string line = in;
     for(int i = 0; i < line.size(); i++) 
         if(line[i] == '=') 
             return false;
     return true;
 }
 
-string expReader::errorCheck(string explain){
-/*
-   for every operation, there should be an id
+int main() {
+   expReader e;
 
-if(!parse.op())
-    cout << error("op") << endl;
-    //output: "Invalid Operations"
-if(!id() || !id2()
-   cout << error("id") << endl;
-   //output: "
-
-
-*/
-
-    return explain;
+   cout << e.isExp("how are you") << endl;
 }
 
