@@ -60,10 +60,13 @@ bool parser::assign(){
 }
 /*Checks if the given operation is valid*/
 bool parser::op(){
-    if(line[index] == '/'|line[index] == '*'|line[index] == '-'|
-            line[index] == '+'|line[index] == '%')
+    if(line[index] == '/'){
+    if(line[index] == '*')
+    if(line[index] == '-')
+    if(line[index] == '+')
+    if(line[index] == '%')
         return true;
-    else return false;
+    return false;
     /*TODO: error explain
      */
 }

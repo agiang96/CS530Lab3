@@ -17,6 +17,7 @@ class parser{
     std::string line;
     int index;
     std::string explain;
+    int eqCount, divCount, mulCount, minCount, modCount;
     public:
         /**
          * inputs a string to sets it to the string line
