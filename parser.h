@@ -55,6 +55,17 @@ class parser{
          * @return 
          */
         bool op();
+        /**
+         * checks if expression is valid
+         * @return 
+         */
+        bool exp();
+        /**
+         * continuation of exp(), checks the rest of the expression
+         * @return 
+         */
+        bool exp2();
+        string remove_if(std::string);
         
 };
 
