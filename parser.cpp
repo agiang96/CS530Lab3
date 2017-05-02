@@ -6,13 +6,6 @@
  * Filename: parser.cpp
  */
 #include "parser.h"
-#include <string.h>
-#include <fstream>
-#include <iostream>
-#include <cstdlib>
-#include <exception>
-#include <valarray>
-using namespace std;
 
 /*Sets the line to the string*/
 parser::setLine(std::string temp){
@@ -172,22 +165,17 @@ bool parser::exp2(){
 
 /*Checks if the given operation is valid*/
 bool parser::op(){
-<<<<<<< HEAD
-    if(line[index] == '/'){
+    if(line[index] == '/')
+        divCount++; return true;
     if(line[index] == '*')
+        mulCount++; return true;
     if(line[index] == '-')
+        minCount++; return true;
     if(line[index] == '+')
+        addCount++; return true;
     if(line[index] == '%')
-        return true;
+        modCount++; return true;
     return false;
-=======
-    if(line[index] == '/'|line[index] == '*'|line[index] == '-'|
-            line[index] == '+'|line[index] == '%'){
-        index++;
-        return true;
-    }    
-    else return false;
->>>>>>> refs/remotes/origin/master
     /*TODO: error explain
      */
 }
@@ -259,15 +247,21 @@ bool parser::id2(){
     if(isValid) return true;
 }
 
-string parser::remove_if(std::string line){
-    string temp = line;
-    string temp2;
-    for (int i = 0;i < temp.size(); i++)
-        if (temp[i] != ' '){
-            temp2[i] = temp[i];
-        }
-            
-    return temp2;
+int parser::getEq(){
+    return eqCount;
 }
 
-
+string parser::error(string err) {
+    if(err == "op")
+        return "Invalid Op";
+    if(err == "id")
+        return "Invalid ID";
+    if(err == "eq")
+        return "Too many equal signs";
+    if(err == "space")
+        return "Invalid spacing";
+    if(err == "assign")
+        return "Invalid Assignment";
+    if(err == "exp")
+        return "Invalid Expression";
+}

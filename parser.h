@@ -8,16 +8,19 @@
 
 #ifndef PARSER_H
 #define PARSER_H
-#include <string>
 #include <string.h>
-#include <vector>
+#include <fstream>
+#include <iostream>
+#include <cstdlib>
+#include <exception>
+#include <valarray>
 using namespace std;
 
 class parser{
     std::string line;
     int index;
     std::string explain;
-    int eqCount, divCount, mulCount, minCount, modCount;
+    int eqCount = 0;
     public:
         /**
          * inputs a string to sets it to the string line
@@ -65,8 +68,19 @@ class parser{
          * @return 
          */
         bool exp2();
-        string remove_if(std::string);
+        /**
+         * returns eqCount
+         * @return 
+         */
+         int getEq();
+        /**
+         * returns error explanation
+         * @return 
+         */
+         string error(string);
+
         
+
 };
 
 
