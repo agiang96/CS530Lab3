@@ -24,14 +24,21 @@ string expReader::errorCheck(string explain){
 
     getline(file, line);
     while(!line.end()) { 
-       if (line[i] == "=,+,-,*,/,(,)") {
+       if (line[i] == "=,+,-,*,/,(,)") { //separate ifs
           var++;
        
-       if (var > 1)
+       if (var > 1) 	//separate ifs
           return var.error();
        if (lpar != rpar)
           return par.error(); 
 
+-----part2----
+   for every operation, there should be an id
+
+if(!op())
+    cout << error(op()) << endl;
+if(!id())
+   cout << error(id()) << endl;
 */
 
     return explain;
