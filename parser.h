@@ -20,7 +20,7 @@ class parser{
     std::string line;
     int index;
     std::string explain;
-    int eqCount = 0;
+    int eqCount;
     public:
         /**
          * inputs a string to sets it to the string line
@@ -32,6 +32,10 @@ class parser{
          * initialize the index
          */
         void initIndex();
+        /**
+         * initialize eqCount
+         */
+        void initEq();
         /**
          * gets the string
          * @return 
@@ -86,4 +90,3 @@ class parser{
 
 
 #endif /* PARSER_H */
-
