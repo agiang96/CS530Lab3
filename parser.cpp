@@ -247,6 +247,10 @@ int parser::getEq(){
 
 
 string parser::error(string err) {
+    if(err == "assign")
+        return "Invalid Assignment";
+    if(err == "exp")
+        return "Invalid Expression";
     if(err == "op")
         return "Invalid Op";
     if(err == "id")
@@ -255,10 +259,6 @@ string parser::error(string err) {
         return "Too many equal signs";
     if(err == "space")
         return "Invalid spacing";
-    if(err == "assign")
-        return "Invalid Assignment";
-    if(err == "exp")
-        return "Invalid Expression";
 }
 
 
@@ -268,6 +268,11 @@ bool parser::isExp(string in){
         if(line[i] == '=') 
             return false;
     return true;
+}
+
+
+void parser::initEq(){
+    eqCount == 0;
 }
 
 
@@ -293,38 +298,32 @@ int main(int argc, char *argv[]) {
             out << p.getLine() << " ";
 
             //output the line, move to next line
-            bool exp = p.isExp(line);
-            if(exp)
-                out << "Expression: ";
-            else
-                out << "Assignment: ";
+            if(p.isExp(line)){
+                //clear index before p.exp()
+                p.initIndex();
+                if(!p.exp())
+                    out << "FAIL: " << p.error("exp");
+                else
+                    out << "PASS";
+                out << endl;
+            }
+            else {
+                //clear index before p.assign()
+                p.initIndex();
+                if(!p.assign())
+                    out << "FAIL: " << p.error("assign");
+                else
+                    out << "PASS";
+                out << endl;
+            }
 
-            //clear index before p.assign()
-            p.initIndex();
-            if(p.assign())
-                out << "assign() works/";
-            else
-                out << "assign() doesn't work/";
+        }//while(getline())
 
-            //clear index before p.exp()
-            p.initIndex();
-            if(p.exp())
-                out << "exp() works";
-            else
-                out << "exp() doesn't work";
-             out << endl;
+    }//if(file)
 
-         }
-
-    }
     file.close();
-
     out.close();
     return 0;
-
 }
 
 
-void parser::initEq(){
-    eqCount == 0;
-}
