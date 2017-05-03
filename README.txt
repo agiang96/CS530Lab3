@@ -17,15 +17,15 @@ Operating instructions:
 	  an .txt file, the program will declare an ERROR and promptly exit.
 	
 List/description of novel/significant design decisions
-            - We first looked at the provided samples of valid/invalid statements.
-            We paid attention to detail since the instructions emphasized on grammar,
-            such as spaces.
-            - Our initial approach was to have one member work on the parsing, and 
-             the other working on the error checking. We ended up combining some parts 
-             of the error checking while we parse through each statement. 
-             - We had problems with calling functions from other files, so we merged 
-            all the parts into one big file. 
-            - 
+        - We first looked at the provided samples of valid/invalid statements.
+        We paid attention to detail since the instructions emphasized on grammar,
+        such as spaces.
+        - Our initial approach was to have one member work on the parsing, and 
+        the other working on the error checking. We ended up combining some parts 
+        of the error checking while we parse through each statement. 
+        - We had problems with calling functions from other files, so we merged 
+        all the parts into one big file. 
+        - Due to time crunches, we made the error messages fairly generic. 
 	
 List/description of any extra features/algorithms/functionality you 
 included which were not required
