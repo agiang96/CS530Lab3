@@ -31,7 +31,7 @@ void parser::initIndex(){
 
 /*Indicates if the assign line is valid*/
 bool parser::assign(){
-    eqCount = 0;
+    initEq();
     if(id()){
         if(line[index] == ' '){
             index++;
