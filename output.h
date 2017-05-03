@@ -5,10 +5,10 @@
  * Assignment #3, Assignment/Expression Parser
  * Filename: output.h
  */
-
 #ifndef OUTPUT_H
 #define OUTPUT_H
 #include "parser.h"
+#include "expReader.h"
 #include <string.h>
 #include <fstream>
 #include <iostream>

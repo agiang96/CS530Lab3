@@ -7,7 +7,7 @@
  */
 
 #include "output.h"
-
+#include "parser.h"
 int main(int argc, char *argv[]) {
     if(argc !=  2) { //Incorrect number of arguments
       std::cout << "Usage: parse <filename>.txt" << std::endl;
@@ -30,40 +30,39 @@ int main(int argc, char *argv[]) {
     }
 
 
+int main(int argc, char *argv[]) {
+
+    std::string filename = argv[1];
 
     std::ifstream file;
     file.open(filename.c_str());
 
     //output file
     std::ofstream out("out.txt");
+    std::string hello = "hello";
+    out << hello << endl;
+    parser p;
+    std::string line;
 
-    parser p; 
-    std:string line;
     //walkthrough the file
     if(file) {
-        while(getline(file, line)){
-            p.setLine(line); //	ERROR: undefined reference
-        
+        while(getline(file, line)) {
+            out << line;
+
+            p.setLine(line); 
             //output the line, move to next line
-            out << p.getLine(); //ERROR: undefined reference
-            out << " ";
-
-            cout << "id: " << p.id();
-            if(p.id() == false) // ALL IF STATEMENTS SAME ERROR
-                 out << p.error("id");
-            if(p.op() == false)
-                out << p.error("op");
             if(p.assign() == false)
-                out << p.error("assign");
-            if(p.exp() == false)
-            if(!p.exp())
-            out << endl;
+                cout << "assign error";
+            else
+                out << "PASS\n";
          }
+
     }
-
-
     file.close();
+
     out.close();
+    return 0;
+
 }
 
 

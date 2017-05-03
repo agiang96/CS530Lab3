@@ -16,9 +16,12 @@ bool expReader::isExp(string in){
     return true;
 }
 
+/*
 int main() {
    expReader e;
 
-   cout << e.isExp("how are you") << endl;
+   if(e.isExp("how are you"))
+      cout << "true" << endl;
 }
+*/
 
