@@ -135,6 +135,16 @@ bool parser::exp2(){
                 }
                 return true;
             }
+            else if(line[index] == ')'){
+                if(index <= line.size()-1 && line[index] != ')'){                   
+                   if(exp2()){
+                       return true;
+                   }
+                   return false;
+                }
+                return true;
+                
+            }
         }
     }
     return false;
@@ -171,7 +181,7 @@ bool parser::id(){
             line[index] == 'k'||line[index] == 'l'||line[index] == 'm'||line[index] == 'n'||line[index] == 'o'|
             line[index] == 'p'||line[index] == 'q'||line[index] == 'r'||line[index] == 's'||line[index] == 't'|
             line[index] == 'u'||line[index] == 'v'||line[index] == 'w'||line[index] == 'x'||line[index] == 'y'|
-            line[index] == 'z'||
+            line[index] == 'z'|
             line[index] == 'A'||line[index] == 'B'||line[index] == 'C'||line[index] == 'D'||line[index] == 'E'|
             line[index] == 'F'||line[index] == 'G'||line[index] == 'H'||line[index] == 'I'||line[index] == 'J'|
             line[index] == 'K'||line[index] == 'L'||line[index] == 'M'||line[index] == 'N'||line[index] == 'O'|
@@ -206,7 +216,7 @@ bool parser::id2(){
             line[index] == 'k'||line[index] == 'l'||line[index] == 'm'||line[index] == 'n'||line[index] == 'o'|
             line[index] == 'p'||line[index] == 'q'||line[index] == 'r'||line[index] == 's'||line[index] == 't'|
             line[index] == 'u'||line[index] == 'v'||line[index] == 'w'||line[index] == 'x'||line[index] == 'y'|
-            line[index] == 'z'||
+            line[index] == 'z'|
             line[index] == 'A'||line[index] == 'B'||line[index] == 'C'||line[index] == 'D'||line[index] == 'E'|
             line[index] == 'F'||line[index] == 'G'||line[index] == 'H'||line[index] == 'I'||line[index] == 'J'|
             line[index] == 'K'||line[index] == 'L'||line[index] == 'M'||line[index] == 'N'||line[index] == 'O'|
