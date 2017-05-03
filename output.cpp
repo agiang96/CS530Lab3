@@ -29,10 +29,8 @@ int main(int argc, char *argv[]) {
       return 0;
     }
 
+/////////////////////////////////////////////////////
 
-int main(int argc, char *argv[]) {
-
-    std::string filename = argv[1];
 
     std::ifstream file;
     file.open(filename.c_str());

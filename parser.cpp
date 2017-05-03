@@ -15,7 +15,7 @@
 using namespace std;
 
 /*Sets the line to the string*/
-parser::setLine(std::string temp){
+void parser::setLine(std::string temp){
     line.clear();
     line.append(temp);
 }
@@ -222,16 +222,7 @@ bool parser::id2(){
     if(isValid) return true;
 }
 
-string parser::remove_if(std::string line){
-    string temp = line;
-    string temp2;
-    for (int i = 0;i < temp.size(); i++)
-        if (temp[i] != ' '){
-            temp2[i] = temp[i];
-        }
-            
-    return temp2;
-}
+
 int parser::getEq(){
     return eqCount;
 }
@@ -251,3 +242,53 @@ string parser::error(string err) {
     if(err == "exp")
         return "Invalid Expression";
 }
+
+
+bool parser::isExp(string in){
+    string line = in;
+    for(int i = 0; i < line.size(); i++) 
+        if(line[i] == '=') 
+            return false;
+    return true;
+}
+
+
+int main(int argc, char *argv[]) {
+
+    std::string filename = argv[1];
+
+    std::ifstream file;
+    file.open(filename.c_str());
+
+    //output file
+    std::ofstream out("out.txt");
+
+    parser p;
+    std::string line;
+
+    //walkthrough the file
+    if(file) {
+        while(getline(file, line)) {
+
+            p.setLine(line); 
+            out << p.getLine() << " ";
+
+            //output the line, move to next line
+            bool exp = p.isExp(line);
+            if(exp)
+                out << "Expression\n";
+            else
+                out << "Assignment\n";
+
+
+         }
+
+    }
+    file.close();
+
+    out.close();
+    return 0;
+
+}
+
+

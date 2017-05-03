@@ -27,7 +27,7 @@ class parser{
          * @param 
          * @return 
          */
-        setLine(std::string);
+        void setLine(std::string);
         /**
          * initialize the index
          */
@@ -79,7 +79,10 @@ class parser{
          */
          string error(string);
 
-        
+        /**
+         * checks if an expression
+         */
+         bool isExp(string);
 
 };
 
