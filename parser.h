@@ -29,15 +29,15 @@ class parser{
          */
         void setLine(std::string);
         /**
-         * initialize the index
+         * initialize index = 0
          */
         void initIndex();
         /**
-         * initialize eqCount
+         * initialize eqCount = 0
          */
         void initEq();
         /**
-         * gets the string
+         * returns line of file
          * @return 
          */
         string getLine();

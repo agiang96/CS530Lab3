@@ -281,8 +281,27 @@ void parser::initEq(){
 
 int main(int argc, char *argv[]) {
 
-    std::string filename = argv[1];
+    if(argc !=  2) { //Incorrect number of arguments
+        std::cout << "Usage: parse <filename>.txt" << std::endl;
+        return 0;
+    }
 
+    std::string filename(argv[1]);
+    int pos = filename.find_last_of(".");
+
+    if(pos == -1) { //First error check to determine if it's
+                    //a .obj file.
+        std::cout << "Usage: parse <filename>.txt" << std::endl;
+        return 0;
+    }
+    std::string extension = filename.substr(pos,filename.length()-pos);
+    //checks for correct extension
+    if(extension.compare(".txt")!=0) {
+        std::cout << "Usage: parse <filename>.txt" << std::endl;
+        return 0;
+    }
+
+    //input file
     std::ifstream file;
     file.open(filename.c_str());
 
@@ -292,17 +311,16 @@ int main(int argc, char *argv[]) {
     parser p;
     std::string line;
 
-
     //walkthrough the file
     if(file) {
         while(getline(file, line)) {
 
+            //output the line
             p.setLine(line); 
             out << p.getLine() << " ";
 
-            //output the line, move to next line
+            // error managing
             if(p.isExp(line)){
-                //clear index before p.exp()
                 p.initIndex();
                 if(!p.exp())
                     out << "FAIL: " << p.error("exp");
@@ -311,7 +329,6 @@ int main(int argc, char *argv[]) {
                 out << endl;
             }
             else {
-                //clear index before p.assign()
                 p.initIndex();
                 if(!p.assign())
                     out << "FAIL: " << p.error("assign");
