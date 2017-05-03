@@ -18,6 +18,7 @@ using namespace std;
 void parser::setLine(std::string temp){
     line.clear();
     line.append(temp);
+    index = 0;
 }
 /*Returns the string from the string variable line*/
 string parser::getLine(){
@@ -56,6 +57,13 @@ bool parser::assign(){
     }
     return false;
 }
+
+
+int parser::getIndex(){
+   return index;
+}
+
+
 /*checks if expression is valid*/
 bool parser::exp(){
     if(line[index] == '('){
@@ -266,6 +274,7 @@ int main(int argc, char *argv[]) {
     parser p;
     std::string line;
 
+
     //walkthrough the file
     if(file) {
         while(getline(file, line)) {
@@ -276,10 +285,24 @@ int main(int argc, char *argv[]) {
             //output the line, move to next line
             bool exp = p.isExp(line);
             if(exp)
-                out << "Expression\n";
+                out << "Expression: ";
             else
-                out << "Assignment\n";
+                out << "Assignment: ";
 
+            //clear index before p.assign()
+            p.initIndex();
+            if(p.assign())
+                out << "assign() works/";
+            else
+                out << "assign() doesn't work/";
+
+            //clear index before p.exp()
+            p.initIndex();
+            if(p.exp())
+                out << "exp() works";
+            else
+                out << "exp() doesn't work";
+             out << endl;
 
          }
 

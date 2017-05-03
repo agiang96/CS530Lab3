@@ -73,11 +73,6 @@ class parser{
          */
         bool exp2();
         /**
-         * returns eqCount
-         * @return 
-         */
-         int getEq();
-        /**
          * returns error explanation
          * @return 
          */
@@ -87,6 +82,14 @@ class parser{
          * checks if an expression
          */
          bool isExp(string);
+
+        /**
+         * returns eqCount
+         * @return 
+         */
+         int getEq();
+         //returns index
+         int getIndex();
 
 };
 
