@@ -27,17 +27,26 @@ string parser::getLine(){
 void parser::initIndex(){
     index = 0;
 }
+
 /*Indicates if the assign line is valid*/
 bool parser::assign(){
     if(id()){
         if(line[index] == ' '){
             index++;
             if(line[index] == '='){
+                eqCount++;
                 index++;
                 if(line[index] == ' '){
                     index++;
                     if(exp()){
-                        return true;
+                        if(line[index] == ';'){
+                            index++;
+                            if(line[index] == ' '){
+                                return true;
+                            }
+                            
+                        }
+                        
                      
                     }
                 }
