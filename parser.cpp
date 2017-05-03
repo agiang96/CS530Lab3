@@ -31,7 +31,7 @@ void parser::initIndex(){
 
 /*Indicates if the assign line is valid*/
 bool parser::assign(){
-    initEq();
+    eqCount = 0;
     if(id()){
         if(line[index] == ' '){
             index++;
@@ -101,6 +101,9 @@ bool parser::exp(){
 }
 
 bool parser::exp2(){
+    if(line[index] == ';' && eqCount > 0){
+        return true;
+    }
     if(op()){
         if(line[index] == '('){
             index++;
@@ -126,7 +129,7 @@ bool parser::exp2(){
         }
         else if(id()){
             if(line[index] == ' '){
-                index++;                
+                index++;  
                 if(index <= line.size()-1 && line[index] != ')'){                   
                    if(exp2()){
                        return true;
@@ -136,7 +139,7 @@ bool parser::exp2(){
                 return true;
             }
             else if(line[index] == ')'){
-                if(index <= line.size()-1 && line[index] != ')'){                   
+                if(index <= line.size()-1 && line[index] != ')'){  
                    if(exp2()){
                        return true;
                    }
@@ -326,5 +329,5 @@ int main(int argc, char *argv[]) {
 
 
 void parser::initEq(){
-    eqCount == 0;
+    eqCount = 0;
 }
