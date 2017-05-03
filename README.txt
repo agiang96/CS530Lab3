@@ -33,7 +33,9 @@ included which were not required
             mentioned for extra credit. 
 	
 List/description of all known deficiencies or bugs
-	- 
+	- Each line gotten from the .txt file must not start with a white space
+	- Any nested parenthesis, there must be a white space between open
+	parentheses e.g. "( (" or ") ) "
 
 Lessons Learned
 	- Communication is Key, especially while working in a team
@@ -47,7 +49,7 @@ BNF
 <assign> := <id> = <exp> ;
 <exp>    := <id> <op> <id> | <exp> <op> <id> | (<id> <op> <id>) | 
             (<exp> <op> <id>) | ( <id> <op> <id> ) | ( <exp> <op> <id> ) 
-<id>     := <char> | _ | <id><char> |  <char><id>
+<id>     := <char> | _ | <id><char> |  <id><digit>
 <op>     := + | - | * | / | %
 <digit>  := 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
 <char>   := a | b | c | d | e | f | g | h | i | j | k | l | m |
