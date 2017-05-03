@@ -62,107 +62,79 @@ bool parser::assign(){
 }
 /*checks if expression is valid*/
 bool parser::exp(){
-    bool isValid = false;
     if(line[index] == '('){
         index++;
         if(line[index] == ' '){
             index++;
         }
-        isValid = exp();
-        if(isValid){
-            if(line[index] == ' '){
-                index++;
-            }
+        if(exp()){
             if(line[index] == ')'){
-                index++;
-                isValid = true;
+                if(line[++index] == ' '){
+                    index++;
+                    
+                    if(index <= line.size() -1 && line[index] != ')'){
+                        if(exp2()){
+                            return true;
+                        }
+                        return false;  
+                    }
+                    return true;
+                }
             }
-            else return false;
-            /*TODO error explain*/
         }
-        else return false;
-        /*TODO error explain*/
     }
-    else {
-        isValid = id();
-    }
-    if(line[index] == ' '){
-            index++;
-    }
-    isValid = op();
-    if(line[index] == ' '){
-            index++;
-    }
-    if(line[index] == '('){
-        index++;
+    else if(id()){
         if(line[index] == ' '){
             index++;
-        }
-        isValid = exp();
-        if(isValid){
-            if(line[index] == ' '){
-                index++;
+            if(exp2()){
+                return true;
             }
-            if(line[index] == ')'){
-                index++;                
-                isValid = true;
-            }
-            else return false;
-            /*TODO error explain*/
-        }
-        else return false;
-        /*TODO error explain*/
+        }  
     }
-    else {
-        isValid = id();
-    }
-    if(isValid && index <= line.size()-1){
-        exp2();
-    }
-    if(isValid) return true;
-    else return false;
-}
-
-bool parser::exp2(){
-    bool isValid = false;
-    if(line[index] == ' '){
-            index++;
-    }
-     isValid = op();
-    if(line[index] == ' '){
-            index++;
-    }
-    if(line[index] == '('){
-        index++;
-        if(line[index] == ' '){
-            index++;
-        }
-        isValid = exp();
-        if(isValid){
-            if(line[index] == ' '){
-                index++;
-            }
-            if(line[index] == ')'){
-                index++;                
-                isValid = true;
-            }
-            else return false;
-            /*TODO error explain*/
-        }
-        else return false;
-        /*TODO error explain*/
-    }
-    else {
-        isValid = id();
-    }
-    if(isValid && index <= line.size()-1){
-        exp2();
-    }
-    if(isValid) return true;
-    else return false;
+    return false;
+    
     
 }
-
+bool parser::exp2(){
+    if(op()){
+        if(line[index] == '('){
+            index++;
+            if(line[index] == ' '){
+                index++;
+                
+            }
+            if(exp()){
+                if(line[index] == ')'){
+                    if(line[++index] == ' '){
+                        index++;
+                        if(index <= line.size() -1 && line[index] != ')'){
+                            if(exp2()){
+                                return true;
+                            }
+                            return false;
+                        }
+                        return true;
+                    }
+                }                
+            }
+            
+        }
+        else if(id()){
+            if(line[index] == ' '){
+                index++;                
+                if(index <= line.size()-1 && line[index] != ')'){                   
+                   if(exp2()){
+                       return true;
+                   }
+                   return false;
+                }
+                return true;
+            }
+        }
+    }
+    return false;
+    
+}
 /*Checks if the given operation is valid*/
 bool parser::op(){
     if(line[index] == '/') | line[index] == '*') | line[index] == '-')
